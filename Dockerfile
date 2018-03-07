@@ -17,11 +17,9 @@ ENV RC_VERSION 0.62cf
 
 WORKDIR /app
 
-RUN curl -fSL "https://releases.rocket.chat/${RC_VERSION}/download" -o rocket.chat.tgz \
-&&  curl -fSL "https://releases.rocket.chat/${RC_VERSION}/asc" -o rocket.chat.tgz.asc \
-&&  gpg --batch --verify rocket.chat.tgz.asc rocket.chat.tgz \
+RUN curl -fSL "https://github.com/jpasantos/Rocket.Chat/releases/download/${RC_VERSION}/${RC_VERSION}.tar.gz" -o rocket.chat.tgz
 &&  tar zxvf rocket.chat.tgz \
-&&  rm rocket.chat.tgz rocket.chat.tgz.asc \
+&&  rm rocket.chat.tgz \
 &&  cd bundle/programs/server \
 &&  npm install
 
