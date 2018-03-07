@@ -10,8 +10,12 @@ RUN groupadd -r rocketchat \
 
 VOLUME /app/uploads
 
+ENV GPG_KEYS 0E163286C20D07B9787EBE9FD7F9D0414FD08104
+
 # gpg: key 4FD08014: public key "Rocket.Chat Buildmaster <buildmaster@rocket.chat>" imported
-RUN gpg --keyserver ha.pool.sks-keyservers.net --recv-keys 0E163286C20D07B9787EBE9FD7F9D0414FD08104
+RUN ( gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$GPG_KEYS" \
+  || gpg --keyserver pgp.mit.edu --recv-keys "$GPG_KEYS" \
+  || gpg --keyserver keyserver.pgp.com --recv-keys "$GPG_KEYS" )
 
 ENV RC_VERSION 0.62cf
 
