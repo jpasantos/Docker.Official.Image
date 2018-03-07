@@ -17,7 +17,7 @@ ENV RC_VERSION 0.62cf
 
 WORKDIR /app
 
-RUN curl -fSL "https://github.com/jpasantos/Rocket.Chat/releases/download/${RC_VERSION}/${RC_VERSION}.tar.gz" -o rocket.chat.tgz
+RUN curl -fSL "https://github.com/jpasantos/Rocket.Chat/releases/download/${RC_VERSION}/${RC_VERSION}.tar.gz" -o rocket.chat.tgz \
 &&  tar zxvf rocket.chat.tgz \
 &&  rm rocket.chat.tgz \
 &&  cd bundle/programs/server \
